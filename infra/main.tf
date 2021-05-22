@@ -103,7 +103,7 @@ resource "aws_instance" "regularserver" {
   vpc_security_group_ids = [ aws_security_group.allow_ssh.id ]
   subnet_id = aws_subnet.subnetA.id
   depends_on = [ aws_instance.vaultserver ]
-  user_data = ${data.template_file.installVaultHelper.rendered}
+  user_data = data.template_file.installVaultHelper.rendered
   tags = {
     Name = var.EC2_NAME
     Project = var.PROJECT
@@ -111,12 +111,12 @@ resource "aws_instance" "regularserver" {
 
 }
 data "template_file" "installVaultHelper" {
-  template = "${file("installVaultHelper.sh")}"
-
+  template = "${file("installVaultHelper.tpl")}"
   vars = {
     vault_address = "${aws_instance.vaultserver.public_ip}"
   }
 }
+
 resource "aws_instance" "vaultserver" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"

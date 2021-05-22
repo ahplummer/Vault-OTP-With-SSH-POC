@@ -128,6 +128,9 @@ case "$1" in
 help) 
     help
     ;;
+init) 
+    init
+    ;;
 addUser) 
 if [[ -z $2 || -z $3 ]]
     then
