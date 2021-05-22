@@ -3,13 +3,15 @@ default: help
 
 help:
 	@echo '>make help 				/ this screen'
-	#@echo '>make build				/ Docker build command'
-	#@echo '>make bootstrap 			/ runs the docker container, builds infra'
-	#@echo '>make login 				/ runs the docker container, logs in'
-	#@echo '>make teardown 				/ runs the docker container, tears down things'
+	@echo '>make build				/ Docker build command'
+	@echo '>make bootstrap 			/ runs the docker container, builds infra'
+	@echo '>make loginwithkey			/ runs the docker container, logs in, leveraging AWS SecretsManager'
+	@echo '>make configurevault			/ runs the docker container, configuresvault environment'
+	@echo '>make adduser				/ runs the docker container, adds a user'
+	@echo '>make teardown 				/ runs the docker container, tears down things'
 	@echo '>make cli				/ runs plain ole zsh'
 
-bootstrap:
+bootstrap: build
 	docker run -v $(CURDIR):/host -v ~/.aws:/root/.aws -it sshpoc:latest /bin/sh -c 'cd /host/dockerscripts; /host/dockerscripts/bootstrap.sh'
 
 loginwithkey: 
