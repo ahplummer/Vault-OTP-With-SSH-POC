@@ -1,7 +1,7 @@
 #!/bin/bash
 export AWS_PAGER=""
-source .env
 pushd ../infra
+source infra.env
 aws configure
 export logininfo=$(cat ~/.aws/credentials | grep aws_access_key_id | awk '{print $3}')
 if [ ${#logininfo} -ge 1 ]; then

@@ -13,7 +13,7 @@ bootstrap:
 	docker run -v $(CURDIR):/host -v ~/.aws:/root/.aws -it sshpoc:latest /bin/sh -c 'cd /host/dockerscripts; /host/dockerscripts/bootstrap.sh'
 
 loginwithkey: 
-	docker run -v $(CURDIR):/host -v ~/.aws:/root/.aws -it sshpoc:latest /bin/sh -c 'cd /host/infra; /host/infra/loginwithkey.sh'
+	docker run -v $(CURDIR):/host -v ~/.aws:/root/.aws -it sshpoc:latest /bin/sh -c 'cd /host/infra; /host/infra/loginwithkey.sh $(server)'
 
 loginOTP: 
 	docker run -v $(CURDIR):/host -v ~/.aws:/root/.aws -it sshpoc:latest /bin/sh -c 'cd /host/dockerscripts; /host/dockerscripts/vault.sh loginOTP $(user) $(password) $(server)'
