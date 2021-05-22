@@ -3,11 +3,14 @@ This stands up a regular EC2 to test with, along with an EC2 with Vault installe
 
 The purpose is to show how Vault can handle one-time-passwords for a fleet of servers; thus keeping away from SSH key sprawl.
 
-# Requirements
+This is working [this tutorial](https://learn.hashicorp.com/tutorials/vault/ssh-otp), but with Makefile / Dockerfile automation.
 
-## For Docker Execution (recommended)
-* Docker
-* Make system for your OS (to leverage the Makefile)
+This works everything (aws, vault, terraform) inside of a self contained docker, so no other tooling besides make/docker are required.
+
+## Requirements
+* Docker installed
+* Make installed and usable
+
 
 # Docker Usage
 * Execute `make bootstrap`. This builds the infrastructure.
